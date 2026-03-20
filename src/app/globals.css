@@ -120,3 +120,81 @@ body {
   filter: blur(6px);
   z-index: -1;
 }
+
+/* ── CITA Cinematic Hero ───────────────────────────── */
+
+/* Overflow caché sur le hero */
+.hero-section {
+  overflow: hidden;
+}
+
+/* Éléments animés — accélération GPU */
+.hero-line-1, .hero-line-2, .hero-line-3,
+.hero-badge, .hero-description,
+.hero-btn-primary, .hero-btn-secondary,
+.hero-trust-badge,
+.product-left-1, .product-left-2, .product-left-3,
+.product-right-1, .product-right-2, .product-right-3 {
+  will-change: transform, opacity;
+}
+
+/* clip-path sur les lignes de titre — nécessaire pour l'effet masque */
+.hero-line-1, .hero-line-2 {
+  overflow: hidden;
+  display: block;
+}
+
+/* "Depuis 1988." — couleur rouge garantie */
+.hero-line-3 {
+  display: block;
+  transform-origin: left center;
+}
+
+/* Curseur sur les produits */
+.product-left-1, .product-left-2, .product-left-3,
+.product-right-1, .product-right-2, .product-right-3 {
+  cursor: default;
+  pointer-events: auto;
+}
+
+/* Glow bleu au hover des caméras droite */
+.product-right-1:hover,
+.product-right-2:hover,
+.product-right-3:hover {
+  filter: drop-shadow(0 20px 50px rgba(19, 85, 168, 0.7))
+          drop-shadow(0  0  28px rgba(19, 85, 168, 0.45)) !important;
+}
+
+/* Glow orange au hover des alarmes gauche */
+.product-left-1:hover,
+.product-left-2:hover,
+.product-left-3:hover {
+  filter: drop-shadow(0 20px 50px rgba(245, 130, 31, 0.65))
+          drop-shadow(0  0  28px rgba(245, 130, 31, 0.4)) !important;
+}
+
+/* Halo pulsant derrière la grande caméra */
+.product-right-2::before {
+  content: '';
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(19,85,168,0.2) 0%, transparent 65%);
+  animation: haloBreath 3.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Bouton primaire — glow rouge au hover */
+.hero-btn-primary {
+  transition: box-shadow 0.3s ease;
+}
+.hero-btn-primary:hover {
+  box-shadow: 0 8px 32px rgba(220, 38, 38, 0.55),
+              0 0   16px rgba(220, 38, 38, 0.3) !important;
+}
+
+/* Bouton secondaire — glow bleu au hover */
+.hero-btn-secondary:hover {
+  box-shadow: 0 8px 24px rgba(19, 85, 168, 0.4) !important;
+}
