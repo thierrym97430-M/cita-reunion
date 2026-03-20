@@ -38,7 +38,8 @@ export default function Confidentialite() {
           <div className="bg-white/[.03] border border-white/[.08] rounded-xl p-6 text-sm text-gray-300 space-y-2">
             <p><span className="text-white font-semibold">Soci&eacute;t&eacute; :</span> SCITA</p>
             <p><span className="text-white font-semibold">Adresse :</span> 10 Rue Jules Hermann, ZI du Chaudron, 97490 Saint-Denis, La R&eacute;union</p>
-            <p><span className="text-white font-semibold">Contact DPO :</span>{' '}<a href="mailto:reunion@citagroupe.com" className="text-blue-400 hover:underline">reunion@citagroupe.com</a></p>
+            <p><span className="text-white font-semibold">DPO :</span> Jason THEOPHILLE</p>
+            <p><span className="text-white font-semibold">Contact DPO :</span>{' '}<a href="mailto:j.theophille@groupemaina.com" className="text-blue-400 hover:underline">j.theophille@groupemaina.com</a></p>
             <p><span className="text-white font-semibold">T&eacute;l&eacute;phone :</span>{' '}<a href="tel:0262948021" className="text-blue-400 hover:underline">02 62 94 80 21</a></p>
           </div>
         </section>
@@ -164,8 +165,8 @@ export default function Confidentialite() {
             ))}
           </div>
           <p className="text-gray-300 text-sm leading-relaxed mt-4">
-            Pour exercer ces droits, envoyez votre demande &agrave;{' '}
-            <a href="mailto:reunion@citagroupe.com" className="text-blue-400 hover:underline">reunion@citagroupe.com</a>
+            Pour exercer ces droits, envoyez votre demande au DPO &agrave;{' '}
+            <a href="mailto:j.theophille@groupemaina.com" className="text-blue-400 hover:underline">j.theophille@groupemaina.com</a>
             {' '}en pr&eacute;cisant votre identit&eacute;. Vous pouvez &eacute;galement adresser une r&eacute;clamation
             &agrave; la{' '}
             <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">CNIL</a>.
