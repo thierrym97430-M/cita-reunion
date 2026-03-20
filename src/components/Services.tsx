@@ -6,7 +6,7 @@ import { Reveal } from "@/lib/motion";
 const services = [
   {
     name: "Système d'alarme intrusion",
-    desc: "Jusqu'à 15 secteurs programmables. Centrale dernière génération. Communication immédiate vers notre centre. Conforme APSAD R81.",
+    desc: "Jusqu'à 15 secteurs programmables. Centrale dernière génération. Communication immédiate vers notre centre. Conforme APSAD R82.",
     image: "/images/alarme-vesta.png",
     imageAlt: "Gamme de centrales d'alarme Vesta",
   },

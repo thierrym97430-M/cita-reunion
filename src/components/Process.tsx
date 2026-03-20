@@ -17,7 +17,7 @@ const steps = [
   {
     num: "03",
     title: "Installation certifiée",
-    desc: "Pose par nos techniciens certifiés, conforme aux normes APSAD R81 et R82.",
+    desc: "Pose par nos techniciens certifiés, conforme à la norme APSAD R82.",
   },
   {
     num: "04",

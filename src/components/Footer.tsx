@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -34,16 +35,32 @@ export default function Footer() {
           </a>
         </div>
         <ul className="flex gap-5 list-none">
-          {["Mentions légales", "CGV", "Confidentialité"].map((l) => (
-            <li key={l}>
-              <a
-                href="#"
-                className="text-[12px] text-white/45 no-underline transition-colors hover:text-white/80"
-              >
-                {l}
-              </a>
-            </li>
-          ))}
+          <li>
+            <Link
+              href="/mentions-legales"
+              className="text-[12px] text-white/45 no-underline transition-colors hover:text-white/80"
+            >
+              Mentions légales
+            </Link>
+          </li>
+          <li>
+            <a
+              href="https://www.citagroupe.com/docs/CGV_SCITA_revue_du_28_novembre_2023.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] text-white/45 no-underline transition-colors hover:text-white/80"
+            >
+              CGV
+            </a>
+          </li>
+          <li>
+            <Link
+              href="/confidentialite"
+              className="text-[12px] text-white/45 no-underline transition-colors hover:text-white/80"
+            >
+              Confidentialité
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

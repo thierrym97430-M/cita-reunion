@@ -24,7 +24,7 @@ const statBlocks = [
       <div className="font-heading text-[26px] font-extrabold text-white leading-[1.2] min-w-[95px] shrink-0">
         APSAD
         <br />
-        <span className="text-red text-lg">R81·R82</span>
+        <span className="text-red text-lg">R82</span>
       </div>
     ),
     title: "Certifications reconnues",
