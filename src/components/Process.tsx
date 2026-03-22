@@ -1,6 +1,7 @@
 "use client";
 
-import { Reveal } from "@/lib/motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import PhotoCarousel from "./PhotoCarousel";
 
 const steps = [
@@ -26,7 +27,29 @@ const steps = [
   },
 ];
 
+const stepVariants = {
+  hidden: { opacity: 0, rotateX: 25, translateY: 60 },
+  visible: (i: number) => ({
+    opacity: 1,
+    rotateX: 0,
+    translateY: 0,
+    transition: {
+      delay: i * 0.12,
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
 export default function Process() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start end", "end start"],
+  });
+  const scaleX = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
+
   return (
     <section className="py-[100px] px-10 bg-w max-sm:px-5" id="process">
       <div className="max-w-[1180px] mx-auto">
@@ -42,11 +65,32 @@ export default function Process() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-4 gap-0 mt-14 relative max-md:grid-cols-2 max-md:gap-8 before:content-[''] before:absolute before:top-7 before:left-[12.5%] before:right-[12.5%] before:h-px before:bg-g200 max-md:before:hidden">
+        <div
+          ref={timelineRef}
+          className="grid grid-cols-4 gap-0 mt-14 relative max-md:grid-cols-2 max-md:gap-8"
+          style={{ perspective: 1000 }}
+        >
+          {/* Static background line */}
+          <div className="absolute top-7 left-[12.5%] right-[12.5%] h-px bg-g200 max-md:hidden" />
+          {/* Animated progress line */}
+          {!shouldReduceMotion && (
+            <motion.div
+              style={{ scaleX, transformOrigin: "left" }}
+              className="absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-red to-red/30 max-md:hidden z-[1]"
+            />
+          )}
+
           {steps.map((s, i) => (
-            <Reveal key={s.num} delay={i * 0.08}>
+            <motion.div
+              key={s.num}
+              custom={i}
+              initial={shouldReduceMotion ? undefined : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{ once: true, margin: "-60px" }}
+              variants={shouldReduceMotion ? undefined : stepVariants}
+            >
               <div className="relative z-[1] px-[18px] text-center group">
-                <div className="w-14 h-14 rounded-full bg-w border-[1.5px] border-g200 flex items-center justify-center mx-auto mb-[22px] font-heading text-lg font-extrabold text-g200 transition-all group-hover:border-red group-hover:text-red group-hover:bg-red-g">
+                <div className="w-14 h-14 rounded-full bg-w border-[1.5px] border-g200 flex items-center justify-center mx-auto mb-[22px] font-heading text-lg font-extrabold text-g200 transition-all group-hover:border-red group-hover:text-red group-hover:bg-red-g relative z-[2]">
                   {s.num}
                 </div>
                 <div className="font-heading text-[15px] font-extrabold text-ink mb-2">
@@ -56,7 +100,7 @@ export default function Process() {
                   {s.desc}
                 </p>
               </div>
-            </Reveal>
+            </motion.div>
           ))}
         </div>
 

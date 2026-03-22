@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -25,54 +25,125 @@ while (groups[groups.length - 1].length < 3) {
   groups[groups.length - 1].push(allPhotos[groups[groups.length - 1].length]);
 }
 
+const containerVariants = {
+  enter: (direction: number) => ({
+    opacity: 0,
+    x: direction > 0 ? 60 : -60,
+    scale: 0.95,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.08,
+    },
+  },
+  exit: (direction: number) => ({
+    opacity: 0,
+    x: direction > 0 ? -60 : 60,
+    scale: 0.95,
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
+const photoVariants = {
+  enter: {
+    opacity: 0,
+    y: 20,
+    scale: 0.92,
+  },
+  center: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -10,
+    scale: 0.96,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
 export default function PhotoCarousel({ height = "h-[140px]" }: { height?: string }) {
-  const [currentGroup, setCurrentGroup] = useState(0);
+  const [[currentGroup, direction], setPage] = useState([0, 1]);
+
+  const paginate = useCallback((newDirection: number) => {
+    setPage(([prev]) => {
+      const next = (prev + newDirection + groups.length) % groups.length;
+      return [next, newDirection];
+    });
+  }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentGroup((prev) => (prev + 1) % groups.length);
-    }, 4000);
+    const timer = setInterval(() => paginate(1), 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [paginate]);
 
   return (
     <div className="relative mb-4 rounded-2xl overflow-hidden">
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" custom={direction}>
         <motion.div
           key={currentGroup}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" as const }}
+          custom={direction}
+          variants={containerVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
           className="grid grid-cols-3 gap-2"
         >
           {groups[currentGroup].map((photo, i) => (
-            <div key={`${currentGroup}-${i}`} className={`relative ${height} rounded-lg overflow-hidden`}>
+            <motion.div
+              key={`${currentGroup}-${i}`}
+              variants={photoVariants}
+              className={`relative ${height} rounded-lg overflow-hidden group cursor-pointer`}
+            >
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
                 quality={85}
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
               />
-            </div>
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
           ))}
         </motion.div>
       </AnimatePresence>
 
-      {/* Dots indicator */}
-      <div className="flex justify-center gap-1.5 mt-3">
+      {/* Progress bar + dots */}
+      <div className="flex justify-center items-center gap-2 mt-3">
         {groups.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrentGroup(i)}
-            className={`w-1.5 h-1.5 rounded-full border-0 cursor-pointer transition-all ${
-              i === currentGroup
-                ? "bg-white/70 w-4"
-                : "bg-white/25"
-            }`}
+            onClick={() => setPage([i, i > currentGroup ? 1 : -1])}
+            className="relative h-1.5 rounded-full border-0 cursor-pointer overflow-hidden transition-all"
+            style={{ width: i === currentGroup ? 28 : 6, backgroundColor: i === currentGroup ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.25)" }}
             aria-label={`Groupe de photos ${i + 1}`}
-          />
+          >
+            {i === currentGroup && (
+              <motion.div
+                className="absolute inset-y-0 left-0 bg-white/70 rounded-full"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 5, ease: "linear" }}
+                key={`progress-${currentGroup}`}
+              />
+            )}
+          </button>
         ))}
       </div>
     </div>

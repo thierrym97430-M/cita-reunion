@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Reveal } from "@/lib/motion";
+import { useEffect, useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import VanillaTilt from "vanilla-tilt";
 
 const services = [
   {
@@ -42,9 +44,61 @@ const services = [
   },
 ];
 
-export default function Services() {
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    rotateX: 20,
+    translateY: 40,
+    scale: 0.95,
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    rotateX: 0,
+    translateY: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+    // Disable tilt on mobile/touch devices
+    if (window.innerWidth < 768) return;
+
+    VanillaTilt.init(cardRef.current, {
+      max: 12,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.25,
+      perspective: 1000,
+      scale: 1.04,
+    });
+
+    const node = cardRef.current;
+    return () => {
+      (node as any)?.vanillaTilt?.destroy();
+    };
+  }, []);
+
   return (
-    <section className="py-[100px] px-10 bg-g50 max-sm:px-5" id="services">
+    <div ref={cardRef} style={{ transformStyle: "preserve-3d" }}>
+      {children}
+    </div>
+  );
+}
+
+export default function Services() {
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <section className="services-section py-[100px] px-10 bg-g50 max-sm:px-5 relative z-10" id="services">
       <div className="max-w-[1180px] mx-auto">
         {/* Header */}
         <div className="flex justify-between items-end mb-11 gap-8 max-md:flex-col max-md:items-start">
@@ -66,45 +120,61 @@ export default function Services() {
         </div>
 
         {/* Bento Grid — uniform 3 columns */}
-        <div className="grid grid-cols-12 gap-3.5">
+        <div className="grid grid-cols-12 gap-3.5" style={{ perspective: 1000 }}>
           {services.map((s, i) => (
-            <Reveal
+            <motion.div
               key={s.name}
-              delay={i * 0.08}
+              custom={i}
+              initial={shouldReduceMotion ? undefined : "hidden"}
+              whileInView={shouldReduceMotion ? undefined : "visible"}
+              viewport={{ once: true, margin: "-60px" }}
+              variants={shouldReduceMotion ? undefined : cardVariants}
               className="col-span-4 max-md:col-span-6 max-sm:col-span-12"
             >
-              <div className="bg-w border-[1.5px] border-g100 rounded-[20px] relative overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(13,24,41,.08)] hover:border-g200 group h-full before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-g100 before:transition-colors hover:before:bg-red flex flex-col">
-                {/* Photo plein cadre */}
-                <div className="relative w-full h-[180px] bg-g50 overflow-hidden">
-                  <Image
-                    src={s.image}
-                    alt={s.imageAlt}
-                    fill
-                    quality={85}
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="font-heading text-[17px] font-extrabold text-ink mb-2">
-                    {s.name}
-                  </div>
-                  <div className="text-[13px] text-g700 leading-[1.7] mb-4 flex-1">
-                    {s.desc}
-                  </div>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-1.5 font-heading text-xs font-bold text-red no-underline"
+              <TiltCard>
+                <div className="bg-w border-[1.5px] border-g100 rounded-[20px] relative overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(13,24,41,.08)] hover:border-g200 group h-full before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-g100 before:transition-colors hover:before:bg-red flex flex-col">
+                  {/* Photo plein cadre */}
+                  <div
+                    className="relative w-full h-[180px] bg-g50 overflow-hidden"
+                    style={{ transform: "translateZ(30px)" }}
                   >
-                    Demander un devis →
-                  </a>
+                    <Image
+                      src={s.image}
+                      alt={s.imageAlt}
+                      fill
+                      quality={85}
+                      className="object-cover"
+                    />
+                  </div>
+                  <div
+                    className="p-6 flex-1 flex flex-col"
+                    style={{ transform: "translateZ(20px)" }}
+                  >
+                    <div className="font-heading text-[17px] font-extrabold text-ink mb-2">
+                      {s.name}
+                    </div>
+                    <div className="text-[13px] text-g700 leading-[1.7] mb-4 flex-1">
+                      {s.desc}
+                    </div>
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-1.5 font-heading text-xs font-bold text-red no-underline"
+                    >
+                      Demander un devis →
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
+              </TiltCard>
+            </motion.div>
           ))}
 
           {/* CTA Card — span 8, centered */}
-          <Reveal
-            delay={0.16}
+          <motion.div
+            custom={6}
+            initial={shouldReduceMotion ? undefined : "hidden"}
+            whileInView={shouldReduceMotion ? undefined : "visible"}
+            viewport={{ once: true, margin: "-60px" }}
+            variants={shouldReduceMotion ? undefined : cardVariants}
             className="col-span-8 col-start-3 max-md:col-span-12 max-md:col-start-1"
           >
             <div className="bg-navy border-[1.5px] border-navy rounded-[20px] p-7 px-6 relative overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(13,24,41,.08)] h-full before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-red flex items-center gap-8 max-sm:flex-col max-sm:items-start">
@@ -127,7 +197,7 @@ export default function Services() {
                 Devis gratuit →
               </a>
             </div>
-          </Reveal>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ export default function CtaMid() {
         <div className="flex gap-2.5 flex-wrap">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 bg-white text-red no-underline px-7 py-[15px] rounded-xl font-heading text-[15px] font-extrabold transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(0,0,0,.2)]"
+            className="cta-pulse inline-flex items-center gap-2 bg-white text-red no-underline px-7 py-[15px] rounded-xl font-heading text-[15px] font-extrabold transition-all hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,.25)]"
           >
             Obtenir un devis →
           </a>

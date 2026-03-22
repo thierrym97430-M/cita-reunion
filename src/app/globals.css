@@ -198,3 +198,71 @@ body {
 .hero-btn-secondary:hover {
   box-shadow: 0 8px 24px rgba(19, 85, 168, 0.4) !important;
 }
+
+/* ── 3D Experience — Transitions entre sections ── */
+
+/* Services — légère remontée visuelle */
+.services-section {
+  position: relative;
+  z-index: 10;
+}
+
+/* Diagonal clip-path pour les sections alternées */
+.section-diagonal-top {
+  clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0% 100%);
+  margin-top: -3rem;
+  padding-top: 5rem;
+}
+
+.section-diagonal-bottom {
+  clip-path: polygon(0 0%, 100% 0%, 100% 95%, 0% 100%);
+  padding-bottom: 5rem;
+}
+
+/* Vignette sur les sections sombres */
+.section-vignette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
+}
+
+/* ── CTA Pulse — bouton "Obtenir un devis" ── */
+.cta-pulse {
+  position: relative;
+  animation: ctaPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+  }
+}
+
+.cta-pulse:hover {
+  animation: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-pulse {
+    animation: none;
+  }
+}
+
+/* ── Grain texture overlay — cinematic feel ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+

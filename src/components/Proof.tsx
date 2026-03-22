@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Reveal } from "@/lib/motion";
 import PhotoCarousel from "./PhotoCarousel";
 
@@ -57,22 +59,36 @@ const testimonials = [
 ];
 
 export default function Proof() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const leftY = useTransform(scrollYProgress, [0, 1], ["0%", "-5%"]);
+  const rightY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+
   return (
     <section
-      className="py-[100px] px-10 bg-navy relative overflow-hidden max-sm:px-5"
+      ref={sectionRef}
+      className="py-[100px] px-10 bg-navy relative overflow-hidden max-sm:px-5 section-vignette"
       id="proof"
     >
-      <div
+      {/* Background blob with parallax */}
+      <motion.div
         className="absolute -top-[250px] -right-[250px] w-[700px] h-[700px] pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(59,91,219,.12), transparent 70%)",
+          y: shouldReduceMotion ? 0 : bgY,
         }}
       />
-      <div className="max-w-[1180px] mx-auto">
+      <div className="max-w-[1180px] mx-auto relative z-[2]">
         <div className="grid grid-cols-2 gap-20 items-start max-md:grid-cols-1 max-md:gap-10">
-          {/* Left */}
-          <div>
+          {/* Left — with parallax */}
+          <motion.div style={{ y: shouldReduceMotion ? 0 : leftY }}>
             <div className="text-[11px] font-bold tracking-[2.5px] uppercase text-[#e87088] mb-3.5 flex items-center gap-2">
               <span className="w-[18px] h-0.5 bg-[#e87088] rounded-sm block" />
               Pourquoi CITA
@@ -111,10 +127,13 @@ export default function Proof() {
                 </Reveal>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right — photos + testimonials */}
-          <div className="flex flex-col gap-3">
+          {/* Right — photos + testimonials with parallax */}
+          <motion.div
+            className="flex flex-col gap-3"
+            style={{ y: shouldReduceMotion ? 0 : rightY }}
+          >
             {/* Photos terrain — carrousel */}
             <PhotoCarousel />
             <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white/[.28] mb-3.5">
@@ -145,7 +164,7 @@ export default function Proof() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
