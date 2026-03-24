@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { motion, useReducedMotion } from 'framer-motion'
 import Nav from "@/components/Nav"
 import Hero from "@/components/Hero"
+import SloganBanner from "@/components/SloganBanner"
 import StatsStrip from "@/components/StatsStrip"
 import Services from "@/components/Services"
 import Proof from "@/components/Proof"
@@ -42,6 +43,7 @@ export default function Home() {
     <>
       <Nav />
       <Hero particleNetwork={<ParticleNetwork />} heroDevices={<HeroDevices />} />
+      <SloganBanner />
       <StatsStrip />
       <Services />
       <motion.div {...motionProps}><Proof /></motion.div>

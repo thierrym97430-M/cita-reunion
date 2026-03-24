@@ -255,6 +255,24 @@ body {
   }
 }
 
+/* ── Slogan Banner — infinite marquee ── */
+@keyframes sloganScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.slogan-track {
+  animation: sloganScroll 28s linear infinite;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slogan-track {
+    animation: none;
+    justify-content: center;
+  }
+}
+
 /* ── Grain texture overlay — cinematic feel ── */
 body::after {
   content: '';
