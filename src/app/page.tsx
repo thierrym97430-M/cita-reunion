@@ -11,6 +11,7 @@ import Proof from "@/components/Proof"
 import Process from "@/components/Process"
 import CtaMid from "@/components/CtaMid"
 import Faq from "@/components/Faq"
+import ParrainageBanner from "@/components/ParrainageBanner"
 import Contact from "@/components/Contact"
 import Footer from "@/components/Footer"
 
@@ -50,6 +51,7 @@ export default function Home() {
       <motion.div {...motionProps}><Process /></motion.div>
       <motion.div {...motionProps}><CtaMid /></motion.div>
       <motion.div {...motionProps}><Faq /></motion.div>
+      <ParrainageBanner />
       <motion.div {...motionProps}><Contact /></motion.div>
       <Footer />
     </>
