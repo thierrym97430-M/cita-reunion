@@ -91,9 +91,9 @@ export default function ParrainageHero({ agence }: { agence: Agence }) {
             >
               Vous êtes client {agence.nomComplet} ? Recommandez-nous à un proche et{" "}
               <strong className="text-white font-medium">
-                gagnez 2 mois d&apos;abonnement offerts
+                gagnez 2 mois offerts
               </strong>
-              . Votre filleul(e) reçoit 1 mois offert et son installation offerte.
+              . Votre filleul(e) reçoit 1 mois offert.
             </motion.p>
 
             <motion.div {...line(0.56)} className="flex flex-wrap gap-3 mt-9">
@@ -115,7 +115,6 @@ export default function ParrainageHero({ agence }: { agence: Agence }) {
               {[
                 "Parrainages illimités",
                 "Rappel sous 48h",
-                "Installation offerte",
                 "Sans engagement",
               ].map((t) => (
                 <span
@@ -152,7 +151,7 @@ export default function ParrainageHero({ agence }: { agence: Agence }) {
                 </span>
               </div>
               <div className="text-[13px] text-white/50 leading-[1.7] mt-2">
-                d&apos;abonnement télésurveillance, pour vous —{" "}
+                pour vous —{" "}
                 <strong className="text-white/85 font-medium">le parrain</strong>.
               </div>
 
@@ -173,11 +172,7 @@ export default function ParrainageHero({ agence }: { agence: Agence }) {
                 </span>
               </div>
               <div className="text-[13px] text-white/50 leading-[1.7] mt-2">
-                pour votre filleul(e) —{" "}
-                <strong className="text-white/85 font-medium">
-                  + installation offerte
-                </strong>
-                .
+                pour votre filleul(e).
               </div>
 
               <div className="mt-7 pt-5 border-t border-white/[0.08] flex items-center gap-2.5">

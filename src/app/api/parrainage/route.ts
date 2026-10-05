@@ -55,8 +55,8 @@ function composerMessage(d: ParrainageFormData, commercial: string | null): stri
   lignes.push(
     ``,
     `Récompenses à appliquer une fois l'installation réalisée :`,
-    `· parrain — 2 mois d'abonnement offerts`,
-    `· filleul(e) — 1 mois d'abonnement offert + installation offerte`
+    `· parrain — 2 mois offerts`,
+    `· filleul(e) — 1 mois offert`
   );
 
   if (d.message) {
@@ -161,7 +161,7 @@ export async function POST(request: Request) {
          parrainage garde ce qui lui a été promis même si elle change. */
       recompenses: {
         parrain: `${OFFRE.parrain.valeur} ${OFFRE.parrain.unite}`,
-        filleul: `${OFFRE.filleul.valeur} ${OFFRE.filleul.unite} + ${OFFRE.highlight.valeur.toLowerCase()}`,
+        filleul: `${OFFRE.filleul.valeur} ${OFFRE.filleul.unite}`,
       },
       consentement: d.consentement,
       horodatage: new Date().toISOString(),

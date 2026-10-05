@@ -18,9 +18,9 @@ export const OFFRE = {
   /* Récompense du parrain */
   parrain: {
     valeur: "2 mois",
-    unite: "d'abonnement offerts",
+    unite: "offerts",
     detail:
-      "Vos 2 prochains mois de télésurveillance sont déduits automatiquement de votre facture.",
+      "Vos 2 mois offerts sont déduits automatiquement de votre facture.",
     bonus: [
       "Cumulable — parrainez autant de proches que vous le souhaitez",
       "Aucune démarche : la remise est appliquée par nos services",
@@ -30,21 +30,15 @@ export const OFFRE = {
   /* Récompense du filleul */
   filleul: {
     valeur: "1 mois",
-    unite: "d'abonnement offert",
+    unite: "offert",
     detail:
-      "Votre filleul(e) démarre avec 1 mois offert, en plus de son installation.",
+      "Votre filleul(e) démarre avec 1 mois offert.",
     bonus: [
-      "Installation offerte par nos techniciens CITA",
       "Devis gratuit et sans engagement de sa part",
     ],
   },
 
   /* Mise en avant secondaire */
-  highlight: {
-    label: "En plus, pour votre filleul(e)",
-    valeur: "Installation offerte",
-    detail: "Pose et mise en service réalisées par nos techniciens certifiés APSAD.",
-  },
 } as const;
 
 export const ETAPES = [
@@ -124,7 +118,7 @@ export function faqParrainage(a: Agence) {
     },
     {
       q: "Combien de personnes puis-je parrainer ?",
-      a: "Autant que vous le souhaitez. Le programme est cumulable : chaque filleul(e) dont l'installation est réalisée vous fait gagner 2 mois d'abonnement supplémentaires.",
+      a: "Autant que vous le souhaitez. Le programme est cumulable : chaque filleul(e) dont l'installation est réalisée vous fait gagner 2 mois offerts supplémentaires.",
     },
     {
       q: "Quand est-ce que je reçois ma récompense ?",
@@ -144,7 +138,7 @@ export function faqParrainage(a: Agence) {
     },
     {
       q: "Mon filleul(e) reçoit-il la même chose que moi ?",
-      a: "Le parrain reçoit 2 mois d'abonnement offerts, le filleul(e) reçoit 1 mois d'abonnement offert ainsi que son installation offerte. Chacun est récompensé, selon des modalités adaptées à son contrat.",
+      a: "Le parrain reçoit 2 mois offerts, le filleul(e) reçoit 1 mois offert. Chacun est récompensé, selon des modalités adaptées à son contrat.",
     },
     {
       q: "Que deviennent les coordonnées transmises ?",
@@ -157,7 +151,7 @@ export function conditions(a: Agence) {
   return [
     `Offre réservée aux clients ${a.nomComplet} titulaires d'un contrat de télésurveillance actif au moment du parrainage.`,
     "Le filleul(e) ne doit pas être déjà client CITA ni avoir fait l'objet d'un devis CITA au cours des 6 derniers mois.",
-    "Les récompenses (2 mois d'abonnement offerts pour le parrain, 1 mois d'abonnement offert et installation offerte pour le filleul) sont acquises uniquement après installation effective et signature du contrat par le filleul(e).",
+    "Les récompenses (2 mois offerts pour le parrain, 1 mois offert pour le filleul) sont acquises uniquement après installation effective et signature du contrat par le filleul(e).",
     "Les mois offerts sont appliqués sous forme d'avoir sur les échéances d'abonnement à venir. Ils ne sont ni cessibles ni convertibles en espèces.",
     "Le parrain déclare avoir informé son filleul(e) et obtenu son accord préalable avant la transmission de ses coordonnées.",
     `${a.nomComplet} se réserve le droit de modifier ou de mettre fin au programme à tout moment, sans effet rétroactif sur les parrainages déjà validés.`,

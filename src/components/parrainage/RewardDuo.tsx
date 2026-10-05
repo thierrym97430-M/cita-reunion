@@ -149,36 +149,6 @@ export default function RewardDuo({ agence }: { agence: Agence }) {
           />
         </div>
 
-        {/* Bandeau highlight */}
-        <motion.div
-          initial={reduce ? undefined : { opacity: 0, y: 24 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-          className="relative overflow-hidden mt-6 bg-navy rounded-[20px] px-8 py-7 max-sm:px-6 flex items-center justify-between gap-6 flex-wrap"
-        >
-          <div
-            aria-hidden
-            className="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-red opacity-20 blur-[70px] pointer-events-none"
-          />
-          <div className="relative">
-            <div className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/40 mb-2">
-              {OFFRE.highlight.label}
-            </div>
-            <div className="font-heading text-[clamp(22px,2.6vw,30px)] font-extrabold text-white leading-tight">
-              {OFFRE.highlight.valeur}
-            </div>
-            <div className="text-[13px] text-white/50 mt-1.5 max-w-[440px] leading-[1.7]">
-              {OFFRE.highlight.detail}
-            </div>
-          </div>
-          <a
-            href="#formulaire-parrainage"
-            className="relative bg-red text-white font-heading font-extrabold text-[14px] px-6 py-3.5 rounded-xl no-underline whitespace-nowrap transition-all hover:bg-red-h hover:-translate-y-0.5 hover:shadow-[0_10px_26px_rgba(200,16,46,.35)]"
-          >
-            Je parraine maintenant →
-          </a>
-        </motion.div>
 
         {/* Avantages */}
         <div className="grid grid-cols-4 gap-3.5 mt-6 max-md:grid-cols-2 max-sm:grid-cols-1">

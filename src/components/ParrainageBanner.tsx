@@ -47,10 +47,10 @@ export default function ParrainageBanner() {
               <h2 className="font-heading text-[clamp(24px,3vw,34px)] font-extrabold text-white leading-[1.12] tracking-[-0.6px]">
                 Parrainez vos proches,
                 <br />
-                <span className="text-red">gagnez 2 mois</span> d&apos;abonnement.
+                <span className="text-red">gagnez 2 mois</span> offerts.
               </h2>
               <p className="text-[14px] text-white/55 leading-[1.75] mt-3">
-                Votre filleul(e) reçoit 1 mois offert et son installation offerte.
+                Votre filleul(e) reçoit 1 mois offert.
                 Sans limite de parrainages.
               </p>
             </div>

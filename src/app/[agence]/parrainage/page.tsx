@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!agence) return {};
 
   const url = `${SITE_URL}/${agence.slug}/parrainage`;
-  const titre = `Parrainage ${agence.nomComplet} — 2 mois d'abonnement offerts`;
-  const description = `Parrainez vos proches chez ${agence.nomComplet} : 2 mois d'abonnement télésurveillance offerts pour vous, 1 mois offert + installation offerte pour votre filleul(e). Parrainages illimités. ☎ ${agence.telephone}`;
+  const titre = `Parrainage ${agence.nomComplet} — 2 mois offerts`;
+  const description = `Parrainez vos proches chez ${agence.nomComplet} : 2 mois offerts pour le parrain, 1 mois offert pour votre filleul(e). Parrainages illimités. ☎ ${agence.telephone}`;
 
   return {
-    title: `Parrainage ${agence.nom} — 2 mois d'abonnement offerts`,
+    title: `Parrainage ${agence.nom} — 2 mois offerts`,
     description,
     keywords: [
       `parrainage alarme ${agence.nom}`,
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       siteName: agence.nomComplet,
       title: titre,
-      description: `Recommandez CITA à un proche : vous gagnez 2 mois d'abonnement offerts, il reçoit 1 mois offert + l'installation offerte.`,
+      description: `Recommandez CITA à un proche : vous gagnez 2 mois offerts, il reçoit 1 mois offert.`,
     },
     alternates: { canonical: url },
   };
@@ -97,8 +97,8 @@ export default async function ParrainageAgencePage({ params }: Props) {
                 Un proche à protéger ?
               </h2>
               <p className="text-[14px] text-white/75 mt-2 max-w-[440px] leading-[1.7]">
-                Parrainez-le en 2 minutes — vous gagnez 2 mois, il gagne 1 mois et
-                l&apos;installation.
+                Parrainez-le en 2 minutes — vous gagnez 2 mois offerts, il gagne 1 mois
+                offert.
               </p>
             </div>
             <div className="flex gap-3 flex-wrap">

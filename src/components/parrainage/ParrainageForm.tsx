@@ -123,7 +123,7 @@ export default function ParrainageForm({
   /* Message pré-rempli pour prévenir le filleul */
   const shareText = encodeURIComponent(
     `Salut ${filleulPrenom} ! Je viens de te parrainer chez ${agence.nomComplet} (alarme & vidéosurveillance). ` +
-      `Tu reçois 1 mois d'abonnement offert + l'installation offerte. Un conseiller va t'appeler sous 48h. ` +
+      `Tu reçois 1 mois offert. Un conseiller va t'appeler sous 48h. ` +
       (pageUrl ? `Plus d'infos : ${pageUrl}` : "")
   );
 
@@ -334,7 +334,7 @@ export default function ParrainageForm({
                       <p className="text-[12px] text-g400 leading-[1.65]">
                         Vos{" "}
                         <strong className="text-ink font-semibold">
-                          2 mois d&apos;abonnement offerts
+                          2 mois offerts
                         </strong>{" "}
                         seront appliqués sur votre contrat dès l&apos;installation de
                         votre filleul(e).
