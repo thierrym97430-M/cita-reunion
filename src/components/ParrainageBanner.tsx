@@ -42,7 +42,7 @@ export default function ParrainageBanner() {
           <div className="relative flex items-center justify-between gap-10 flex-wrap">
             <div className="max-w-[540px]">
               <div className="inline-flex items-center gap-2 bg-red text-white text-[10px] font-heading font-bold tracking-[1px] px-3 py-1 rounded-full mb-4">
-                🎁 DÉJÀ CLIENT CITA ?
+                🎁 CLIENT CITA EN LOCATION ?
               </div>
               <h2 className="font-heading text-[clamp(24px,3vw,34px)] font-extrabold text-white leading-[1.12] tracking-[-0.6px]">
                 Parrainez vos proches,

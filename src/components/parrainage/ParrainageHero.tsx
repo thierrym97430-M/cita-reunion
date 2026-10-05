@@ -89,7 +89,7 @@ export default function ParrainageHero({ agence }: { agence: Agence }) {
               {...line(0.46)}
               className="text-[16px] text-white/55 leading-[1.8] max-w-[520px] mt-7"
             >
-              Vous êtes client {agence.nomComplet} ? Recommandez-nous à un proche et{" "}
+              Vous louez votre alarme ou votre vidéosurveillance chez {agence.nomComplet} ? Recommandez-nous à un proche et{" "}
               <strong className="text-white font-medium">
                 gagnez 2 mois offerts
               </strong>

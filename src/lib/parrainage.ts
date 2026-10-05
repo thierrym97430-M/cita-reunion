@@ -114,7 +114,7 @@ export function faqParrainage(a: Agence) {
   return [
     {
       q: "Qui peut parrainer ?",
-      a: `Tout client ${a.nomComplet} titulaire d'un contrat de télésurveillance en cours de validité peut parrainer ses proches : famille, amis, voisins, collègues, ou même un professionnel de son entourage.`,
+      a: `Tout client ${a.nomComplet} en location — alarme télésurveillée ou vidéosurveillance — avec un contrat en cours de validité peut parrainer ses proches : famille, amis, voisins, collègues, ou même un professionnel de son entourage.`,
     },
     {
       q: "Combien de personnes puis-je parrainer ?",
@@ -149,10 +149,10 @@ export function faqParrainage(a: Agence) {
 
 export function conditions(a: Agence) {
   return [
-    `Offre réservée aux clients ${a.nomComplet} titulaires d'un contrat de télésurveillance actif au moment du parrainage.`,
+    `Offre réservée aux clients ${a.nomComplet} titulaires d'un contrat de location actif au moment du parrainage — alarme télésurveillée ou vidéosurveillance.`,
     "Le filleul(e) ne doit pas être déjà client CITA ni avoir fait l'objet d'un devis CITA au cours des 6 derniers mois.",
     "Les récompenses (2 mois offerts pour le parrain, 1 mois offert pour le filleul) sont acquises uniquement après installation effective et signature du contrat par le filleul(e).",
-    "Les mois offerts sont appliqués sous forme d'avoir sur les échéances d'abonnement à venir. Ils ne sont ni cessibles ni convertibles en espèces.",
+    "Les mois offerts sont appliqués sous forme d'avoir sur les loyers à venir du contrat de location. Ils ne sont ni cessibles ni convertibles en espèces.",
     "Le parrain déclare avoir informé son filleul(e) et obtenu son accord préalable avant la transmission de ses coordonnées.",
     `${a.nomComplet} se réserve le droit de modifier ou de mettre fin au programme à tout moment, sans effet rétroactif sur les parrainages déjà validés.`,
   ] as const;

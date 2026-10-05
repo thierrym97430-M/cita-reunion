@@ -40,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: [
       `parrainage alarme ${agence.nom}`,
       `parrainage télésurveillance ${agence.code}`,
+      `parrainage vidéosurveillance ${agence.nom}`,
       `offre parrainage CITA ${agence.nom}`,
       `parrainer un proche sécurité ${agence.nom}`,
     ],

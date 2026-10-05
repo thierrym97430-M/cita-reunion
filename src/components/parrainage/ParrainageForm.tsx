@@ -441,7 +441,7 @@ export default function ParrainageForm({
                   </label>
                   <textarea
                     id="message"
-                    placeholder="Ex : Marie cherche une alarme pour sa maison, disponible en fin de journée."
+                    placeholder="Ex : Marie cherche une alarme ou des caméras pour sa maison, disponible en fin de journée."
                     className={`${INPUT_CLASS} resize-y min-h-[80px]`}
                     {...register("message")}
                   />
