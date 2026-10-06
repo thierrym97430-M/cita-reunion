@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
+import JsPret from "@/components/JsPret";
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -178,6 +179,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd }}
         />
+        <JsPret />
+        <noscript>
+          <div style={{ position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 9999, background: "#C8102E", color: "#fff", textAlign: "center", padding: "12px 16px", fontSize: 14 }}>
+            Votre navigateur bloque JavaScript : le formulaire ne peut pas s&apos;envoyer. Appelez-nous au 0262 94 80 21.
+          </div>
+        </noscript>
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>
