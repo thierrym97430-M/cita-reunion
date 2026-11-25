@@ -20,7 +20,7 @@ export function generateStaticParams() {
 export const dynamicParams = false;
 
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://cita-reunion.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://cita-reunion.mprod-studio.com"
 ).replace(/\/+$/, "");
 
 type Props = { params: Promise<{ agence: string }> };
