@@ -4,6 +4,9 @@ import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import JsPret from "@/components/JsPret";
 
+/** Adresse publique du site (canonical, OpenGraph, JSON-LD). Réglée par NEXT_PUBLIC_SITE_URL au build. */
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cita-reunion.mprod-studio.com").replace(/\/+$/, "");
+
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://cita-reunion.vercel.app',
+    url: `${SITE_URL}`,
     siteName: 'CITA La Réunion',
     title: 'CITA La Réunion | Alarme, Vidéosurveillance & Télésurveillance 974',
     description:
@@ -80,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://cita-reunion.vercel.app',
+    canonical: `${SITE_URL}`,
   },
 };
 
@@ -90,14 +93,14 @@ const jsonLd = JSON.stringify({
   '@graph': [
     {
       '@type': 'LocalBusiness',
-      '@id': 'https://cita-reunion.vercel.app/#business',
+      '@id': `${SITE_URL}/#business`,
       name: 'CITA La Réunion',
       alternateName: 'SCITA',
       description:
         'Expert en alarme, vidéosurveillance et télésurveillance 24h/24 à La Réunion depuis 1988.',
-      url: 'https://cita-reunion.vercel.app',
-      logo: 'https://cita-reunion.vercel.app/images/logo-cita-transparent.png',
-      image: 'https://cita-reunion.vercel.app/images/og-cita-reunion.jpg',
+      url: `${SITE_URL}`,
+      logo: `${SITE_URL}/images/logo-cita-transparent.png`,
+      image: `${SITE_URL}/images/og-cita-reunion.jpg`,
       telephone: '+262262948021',
       email: 'reunion@citagroupe.com',
       priceRange: '€€',
@@ -135,7 +138,7 @@ const jsonLd = JSON.stringify({
     {
       '@type': 'LocalBusiness',
       name: 'CITA La Réunion — Agence Sud',
-      parentOrganization: { '@id': 'https://cita-reunion.vercel.app/#business' },
+      parentOrganization: { '@id': `${SITE_URL}/#business` },
       telephone: '+262262020303',
       address: {
         '@type': 'PostalAddress',
@@ -156,10 +159,10 @@ const jsonLd = JSON.stringify({
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://cita-reunion.vercel.app/#website',
-      url: 'https://cita-reunion.vercel.app',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}`,
       name: 'CITA La Réunion',
-      publisher: { '@id': 'https://cita-reunion.vercel.app/#business' },
+      publisher: { '@id': `${SITE_URL}/#business` },
       inLanguage: 'fr-FR',
     },
   ],
